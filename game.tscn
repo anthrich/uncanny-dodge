@@ -1,7 +1,9 @@
-[gd_scene load_steps=11 format=3 uid="uid://clbs4hrknvblv"]
+[gd_scene load_steps=18 format=3 uid="uid://clbs4hrknvblv"]
 
 [ext_resource type="Texture2D" uid="uid://c0imnfobm45vy" path="res://atlas_floor-16x16.png" id="1_d47i8"]
 [ext_resource type="Texture2D" uid="uid://d35mwwkl5gtn7" path="res://0x72_DungeonTilesetII_v1.7.png" id="2_eeopo"]
+[ext_resource type="Script" path="res://CharacterMovement.cs" id="2_m3d0x"]
+[ext_resource type="Texture2D" uid="uid://c4pm5ld6jf0wl" path="res://button-red.png" id="3_f54c5"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_u6wo5"]
 texture = ExtResource("1_d47i8")
@@ -76,6 +78,9 @@ animations = [{
 "speed": 4.0
 }]
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_atgjt"]
+radius = 5.09902
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_jcgh7"]
 atlas = ExtResource("2_eeopo")
 region = Rect2(128, 32, 16, 32)
@@ -98,7 +103,34 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_4e8cd"]
+atlas = ExtResource("2_eeopo")
+region = Rect2(128, 160, 16, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_w00cq"]
+atlas = ExtResource("2_eeopo")
+region = Rect2(144, 160, 16, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_el48u"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4e8cd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_w00cq")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="Theme" id="Theme_68vv7"]
+
 [node name="Node2D" type="Node2D"]
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(95, 88)
 
 [node name="TileMap" type="TileMap" parent="."]
 texture_filter = 1
@@ -106,15 +138,19 @@ tile_set = SubResource("TileSet_h1lrm")
 format = 2
 layer_0/tile_data = PackedInt32Array(0, 0, 0, 1, 0, 0, 2, 0, 0, 3, 0, 0, 4, 0, 0, 5, 0, 0, 65540, 0, 0, 65539, 0, 0, 65538, 65536, 0, 65537, 0, 0, 65541, 131072, 0, 65536, 0, 0, 6, 0, 0, 7, 0, 0, 8, 0, 0, 9, 0, 0, 10, 0, 0, 65546, 0, 0, 131082, 0, 0, 65545, 0, 0, 65544, 0, 0, 65543, 0, 0, 65542, 0, 0, 131081, 262144, 1, 131080, 0, 0, 131079, 131072, 0, 131078, 131072, 0, 131077, 131072, 0, 131076, 0, 0, 131075, 0, 0, 131074, 0, 0, 131073, 0, 0, 131072, 0, 0, 196608, 0, 0, 196609, 262144, 1, 196610, 0, 0, 196611, 0, 0, 196612, 0, 0, 196613, 0, 0, 196614, 131072, 0, 196615, 131072, 0, 196616, 0, 0, 196617, 0, 0, 196618, 0, 0, 262154, 0, 0, 262153, 0, 0, 262152, 0, 0, 262151, 0, 0, 262150, 262144, 1, 262149, 65536, 0, 262148, 0, 0, 262147, 0, 0, 262146, 0, 0, 262145, 0, 0, 262144, 0, 0, 327680, 0, 0, 327681, 0, 0, 327682, 0, 0, 327683, 0, 0, 327684, 0, 0, 327685, 262144, 1, 327686, 262144, 1, 327687, 0, 0, 327688, 0, 0, 327689, 0, 0, 327690, 0, 0, 393226, 262144, 1, 393225, 0, 0, 393224, 0, 0, 393223, 0, 0, 393222, 0, 0, 393221, 65536, 0, 393220, 0, 0, 393219, 0, 0, 393218, 131072, 0, 393217, 131072, 0, 393216, 0, 0, 458752, 0, 0, 458753, 0, 0, 458754, 131072, 0, 458755, 131072, 0, 458756, 131072, 0, 458757, 131072, 0, 458758, 131072, 0, 458759, 131072, 0, 458760, 131072, 0, 458761, 131072, 0, 458762, 0, 0, 524298, 0, 0, 524297, 262144, 1, 524296, 131072, 0, 524295, 0, 0, 524294, 131072, 0, 524293, 131072, 0, 524292, 131072, 0, 524291, 131072, 0, 524290, 131072, 0, 524289, 0, 0, 524288, 0, 0, 589834, 0, 0, 589833, 0, 0, 589832, 0, 0, 589831, 131072, 0, 589830, 131072, 0, 589829, 0, 0, 589828, 0, 0, 589827, 0, 0, 589826, 0, 0, 589825, 0, 0, 589824, 0, 0)
 
-[node name="Camera2D" type="Camera2D" parent="TileMap"]
-position = Vector2(96, 80)
+[node name="CharacterBody2D" type="CharacterBody2D" parent="."]
+motion_mode = 1
+script = ExtResource("2_m3d0x")
 
-[node name="Fighter" type="AnimatedSprite2D" parent="."]
+[node name="Fighter" type="AnimatedSprite2D" parent="CharacterBody2D"]
 texture_filter = 1
-position = Vector2(51, 77)
 sprite_frames = SubResource("SpriteFrames_oa45u")
 autoplay = "default"
-frame_progress = 0.959629
+frame_progress = 0.726998
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D"]
+position = Vector2(60, 68)
+shape = SubResource("CircleShape2D_atgjt")
 
 [node name="Fighter2" type="AnimatedSprite2D" parent="."]
 texture_filter = 1
@@ -128,4 +164,45 @@ texture_filter = 1
 position = Vector2(94, 107)
 sprite_frames = SubResource("SpriteFrames_stfky")
 autoplay = "default"
-frame_progress = 0.18829
+frame_progress = 0.646737
+
+[node name="Wizard" type="AnimatedSprite2D" parent="."]
+texture_filter = 1
+position = Vector2(52, 114)
+sprite_frames = SubResource("SpriteFrames_el48u")
+autoplay = "default"
+frame_progress = 0.452249
+
+[node name="Button" type="Button" parent="."]
+texture_filter = 1
+offset_left = -16.0
+offset_top = 141.0
+offset_right = 22.0
+offset_bottom = 172.0
+theme = SubResource("Theme_68vv7")
+text = "1"
+icon = ExtResource("3_f54c5")
+
+[node name="Button2" type="Button" parent="."]
+texture_filter = 1
+offset_left = 41.0
+offset_top = 141.0
+offset_right = 79.0
+offset_bottom = 172.0
+text = "2"
+
+[node name="Button3" type="Button" parent="."]
+texture_filter = 1
+offset_left = 99.0
+offset_top = 141.0
+offset_right = 137.0
+offset_bottom = 172.0
+text = "3"
+
+[node name="Button4" type="Button" parent="."]
+texture_filter = 1
+offset_left = 156.0
+offset_top = 142.0
+offset_right = 194.0
+offset_bottom = 173.0
+text = "4"
