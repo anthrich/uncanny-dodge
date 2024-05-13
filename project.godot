@@ -31,5 +31,6 @@ project/assembly_name="uncanny-dodge"
 
 [rendering]
 
+environment/defaults/default_clear_color=Color(0.0206732, 0.00593805, 0.0923936, 1)
 2d/snap/snap_2d_transforms_to_pixel=true
 2d/snap/snap_2d_vertices_to_pixel=true
