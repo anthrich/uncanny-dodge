@@ -24,5 +24,6 @@ public partial class SkeletonMage : Node2D
         var direction = new Vector2(x, y).Normalized();
         var range = _randomNumberGenerator.RandfRange(0, Range);
         AttackZone.GlobalPosition = target.GlobalPosition + direction * range;
+        AttackZone.StartAttack();
     }
 }
