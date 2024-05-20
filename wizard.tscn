@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://bj7r346phnmay"]
+
+[ext_resource type="PackedScene" uid="uid://jonae56l5g8q" path="res://character.tscn" id="1_1k6em"]
+[ext_resource type="SpriteFrames" uid="uid://d27tgftboic64" path="res://wizard-animation.tres" id="2_b1o46"]
+
+[node name="Character" instance=ExtResource("1_1k6em")]
+
+[node name="AnimatedSprite2D" parent="." index="1"]
+sprite_frames = ExtResource("2_b1o46")
+frame_progress = 0.0

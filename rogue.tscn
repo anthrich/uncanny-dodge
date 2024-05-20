@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://dcwnn7g40xpit"]
+
+[ext_resource type="PackedScene" uid="uid://jonae56l5g8q" path="res://character.tscn" id="1_hqnbd"]
+[ext_resource type="SpriteFrames" uid="uid://dbkwx31bhmk31" path="res://rogue_animation.tres" id="2_5y2gx"]
+
+[node name="Rogue" instance=ExtResource("1_hqnbd")]
+
+[node name="AnimatedSprite2D" parent="." index="1"]
+sprite_frames = ExtResource("2_5y2gx")
+frame_progress = 0.0

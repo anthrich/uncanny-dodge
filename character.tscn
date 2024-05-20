@@ -1,0 +1,52 @@
+[gd_scene load_steps=8 format=3 uid="uid://jonae56l5g8q"]
+
+[ext_resource type="Script" path="res://CharacterMovement.cs" id="1_84xel"]
+[ext_resource type="Texture2D" uid="uid://dohfvl8gvnde4" path="res://select.png" id="2_cukn7"]
+[ext_resource type="Texture2D" uid="uid://d35mwwkl5gtn7" path="res://0x72_DungeonTilesetII_v1.7.png" id="3_m7aig"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ktucm"]
+atlas = ExtResource("3_m7aig")
+region = Rect2(128, 96, 16, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cr31u"]
+atlas = ExtResource("3_m7aig")
+region = Rect2(144, 96, 16, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_oa45u"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ktucm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cr31u")
+}],
+"loop": true,
+"name": &"default",
+"speed": 4.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_atgjt"]
+radius = 5.09902
+
+[node name="Character" type="CharacterBody2D" node_paths=PackedStringArray("SelectedSprite2D")]
+motion_mode = 1
+script = ExtResource("1_84xel")
+SelectedSprite2D = NodePath("Selection")
+
+[node name="Selection" type="Sprite2D" parent="."]
+visible = false
+texture_filter = 1
+position = Vector2(0, 4)
+scale = Vector2(1, 0.75)
+texture = ExtResource("2_cukn7")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+texture_filter = 1
+position = Vector2(0, -10)
+sprite_frames = SubResource("SpriteFrames_oa45u")
+autoplay = "default"
+frame_progress = 0.726998
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_atgjt")
