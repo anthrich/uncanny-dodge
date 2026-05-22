@@ -11,6 +11,15 @@ public partial class Party : Node2D
         PartyMembers = GetChildren().OfType<CharacterMovement>().ToArray();
     }
 
+    public void OnPartyMemberSelected(CharacterMovement characterMovement)
+    {
+        foreach (var member in PartyMembers)
+        {
+            if(ReferenceEquals(characterMovement, member)) continue;
+            member.Deselect();
+        }
+    }
+
     public override void _Input(InputEvent @event)
     {
         for (var partyMember = 1; partyMember <= PartyMembers.Length; partyMember++)

@@ -27,7 +27,7 @@ animations = [{
 }]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_atgjt"]
-radius = 5.09902
+radius = 7.0
 
 [sub_resource type="Gradient" id="Gradient_jfld0"]
 colors = PackedColorArray(0.369068, 0, 0.0562284, 1, 0.539302, 0.0153546, 4.81308e-08, 1)
@@ -38,6 +38,7 @@ width = 16
 height = 4
 
 [node name="Character" type="CharacterBody2D" node_paths=PackedStringArray("SelectedSprite2D", "HealthBar")]
+input_pickable = true
 motion_mode = 1
 script = ExtResource("1_84xel")
 SelectedSprite2D = NodePath("Selection")
