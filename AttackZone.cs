@@ -1,3 +1,4 @@
+using System.Linq;
 using Godot;
 
 namespace uncannydodge;
@@ -5,6 +6,8 @@ namespace uncannydodge;
 public partial class AttackZone : Node2D
 {
     [Export] public float ExpansionTimeInSeconds = 2;
+    [Export] public int Damage = 5;
+    [Export] public Area2D CollisionArea;
     private bool _isExpanding = false;
 
     public override void _Ready()
@@ -29,6 +32,11 @@ public partial class AttackZone : Node2D
             Scale = Scale.Clamp(Vector2.Zero, Vector2.One);
             _isExpanding = false;
             Visible = false;
+            
+            foreach (var overlappingBody in CollisionArea.GetOverlappingBodies().OfType<CharacterMovement>())
+            {
+                overlappingBody.ApplyDamage(Damage);
+            }
         }
     }
 }

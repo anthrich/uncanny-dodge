@@ -1,3 +1,4 @@
+using System;
 using Godot;
 
 namespace uncannydodge;
@@ -64,5 +65,12 @@ public partial class CharacterMovement : CharacterBody2D
         var direction = (_targetPosition - Position).Normalized();
         Velocity = direction * Speed;;
         MoveAndSlide();
+    }
+
+    public void ApplyDamage(int damage)
+    {
+        CurrentHealth -= damage;
+        if(CurrentHealth < 0) CurrentHealth = 0;
+        HealthBar.Value = CurrentHealth;
     }
 }

@@ -14,7 +14,7 @@ public partial class SkeletonMage : Node2D
         _randomNumberGenerator = new RandomNumberGenerator();
     }
 
-    public void Attack()
+    private void Attack()
     {
         var target = Party.PartyMembers[_randomNumberGenerator.RandiRange(0, Party.PartyMembers.Length - 1)];
         var x = _randomNumberGenerator.Randf();
